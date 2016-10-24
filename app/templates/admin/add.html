@@ -1,0 +1,74 @@
+ <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Add new Admin</h2>
+
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="demo-form2" action="{{url_for('admin.add')}}" method="post" data-parsley-validate class="form-horizontal form-label-left" role="form">
+
+                    {{ form.csrf_token }}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Username<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="username" id="first-name" placeholder="Username" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      {% for message in form.username.errors %}
+                          <div class="alert alert-success">
+                              <strong>{{message}}</strong>
+                         </div>
+                      {%endfor%}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Email<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" dirname="email" name="email" placeholder="Email" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      {% for message in form.email.errors %}
+                      <div class="alert alert-danger">{{ message }}</div>
+                      {% endfor %}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input  class="form-control col-md-7 col-xs-12" placeholder="Password" type="password" name="password">
+                        </div>
+                      </div>
+                      {% for message in form.password.errors %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nhap lai password<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input name="confirm" placeholder="Nhap lai Password" class="date-picker form-control col-md-7 col-xs-12" required="required" type="password">
+                        </div>
+                      </div>
+                      {% for message in form.confirm.errors %}
+                      <div class="alert alert-danger">{{ message }}</div>
+                      {% endfor %}
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Role</label>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                          <select class="form-control" name="role">
+                            <option value="0">User</option>
+                            <option value="1">Admin</option>
+
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                          <button type="submit" name="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
