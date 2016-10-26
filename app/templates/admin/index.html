@@ -243,26 +243,18 @@
                       </thead>
                       <tbody>
                       {% for user in lists%}
-                        <tr>
+                        <tr class="rowlist">
                           <th scope="row">{{user.id}}</th>
                           <td>{{user.username}}</td>
                           <td>{{user.email}}</td>
                           <td>{{user.role}}</td>
 
                           <td style="width: 1px;">
-                            <!--<form action="{{ url_for('admin.edit', id=user.id) }}" method="POST">-->
-                                                    <!--<input type="submit" value="edit">-->
-
-                                                <!--</form>-->
-
-                            <a data-toggle="modal" data-target="#exampleModal" href="{{url_for('admin.edit')}}" data-whatever="@mdo"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a data-toggle="modal" data-target="#exampleModal" href="{{ url_for('admin.edit',id=user.id) }}" data-whatever="@mdo"><span class="glyphicon glyphicon-pencil"></span></a>
                           </td>
                           <td style="width: 1px;">
-                            <a href="{{url_for('admin.delete',id=user.id)}}"><span class="glyphicon glyphicon-trash"></span></a>
-                            <!--<form action="{{ url_for('admin.delete', id=user.id) }}" method="POST">-->
-                                                    <!--<input type="submit">-->
+                            <a class="delete"  url="{{url_for('admin.delete')}}" id="{{user.id}}"><span class="glyphicon glyphicon-trash"></span></a>
 
-                                                <!--</form>-->
                           </td>
                         </tr>
                        {%endfor%}
@@ -297,6 +289,7 @@
     </div>
 
     <!-- jQuery -->
+
     <script src="{{url_for('static',filename='vendors/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
     <script src="{{url_for('static',filename='vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
@@ -336,6 +329,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{url_for('static',filename='build/js/custom.min.js')}}"></script>
+
+    <script src="{{url_for('static',filename='custum.js')}}"></script>
 
     <!-- Flot -->
     <script>

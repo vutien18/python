@@ -7,7 +7,7 @@
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" role="form" action="{{url_for('category.add')}}" method="post" data-parsley-validate class="form-horizontal form-label-left">
-
+                       {{ form.csrf_token }}
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name<span class="required">*</span>
                         </label>
@@ -17,10 +17,12 @@
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Danh muc</label>
-                        <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                           <select class="form-control" name="category_id">
                             <option value="0">Danh muc cha</option>
-
+                            {% for info in infos %}
+                              <option value="1">{{info.name}}</option>
+                            {% endfor%}
                           </select>
                         </div>
                       </div>

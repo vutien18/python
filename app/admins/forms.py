@@ -9,7 +9,7 @@ class SigupForm(FlaskForm):
     password=PasswordField('password',[validators.Required('Please enter a password'),validators.Length(min=6,message='Passwords is at least 6 characres.'),validators.EqualTo('confirm',message='Passwords must match')])
     role=TextField('role')
     confirm=PasswordField('Repeat Password')
-    submit=SubmitField('Create account')
+    # submit=SubmitField('Create account')
 
 class LoginForm(FlaskForm):
     username=TextField('username',[validators.Required('Enter username')])

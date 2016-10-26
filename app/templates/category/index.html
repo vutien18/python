@@ -277,16 +277,15 @@
         <div class="right_col" role="main">
         <div class="page-title">
               <div class="title_left">
-                <h3>Admin</h3>
+                <h3>Quan ly danh muc</h3>
               </div>
 
               <div class="title_right">
                 <div class="btn-group pull-right">
-                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ url_for('admin.add') }}" data-whatever="@mdo">Add New</a>
+                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="{{ url_for('category.add') }}" data-whatever="@mdo">Add New</a>
                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
-
                         </div>
                       </div>
                   </div>
@@ -297,9 +296,9 @@
             <div class="clearfix"></div>
           <!-- top tiles -->
           <div class="row">
-                   <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-6">
                 <div class="x_panel">
-
+                  <h4>Danh muc cha</h4>
                   <div class="x_content">
 
                     <table class="table">
@@ -308,6 +307,44 @@
                           <th>ID</th>
                           <th>Name</th>
                           <th>Positon</th>
+                          <th colspan="2">Action</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for category in listcategorys %}
+                          {%if category.category==0%}
+                        <tr>
+                          <th scope="row">{{category.id}}</th>
+                          <td>{{category.name}}</td>
+                          <td>{{category.position}}</td>
+                           <td style="width: 1px;">
+                            <a data-toggle="modal" data-target="#exampleModal" href="" data-whatever="@mdo"><span class="glyphicon glyphicon-pencil"></span></a>
+                          </td>
+                          <td style="width: 1px;">
+                            <a class="delete"  url=""><span class="glyphicon glyphicon-trash"></span></a>
+                          </td>
+                        </tr>
+                        {%endif%}
+                       {% endfor %}
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+             <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="x_panel">
+                    <h4>Danh muc con</h4>
+                  <div class="x_content">
+
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Positon</th>
+                          <th colspan="2">Action</th>
 
                         </tr>
                       </thead>
@@ -317,7 +354,12 @@
                           <th scope="row">{{category.id}}</th>
                           <td>{{category.name}}</td>
                           <td>{{category.position}}</td>
-                          <td>@mdo</td>
+                           <td style="width: 1px;">
+                            <a data-toggle="modal" data-target="#exampleModal" href="" data-whatever="@mdo"><span class="glyphicon glyphicon-pencil"></span></a>
+                          </td>
+                          <td style="width: 1px;">
+                            <a class="delete"  url="" id="{{category.id}}"><span class="glyphicon glyphicon-trash"></span></a>
+                          </td>
                         </tr>
                        {% endfor %}
                       </tbody>

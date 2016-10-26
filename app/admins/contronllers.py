@@ -26,7 +26,7 @@ def add():
         logging.error(request.form)
         if not form.validate():
             logging.error(form.errors)
-            return render_template('admin/add.html',form=form)
+            return render_template('admin/index.html',form=form)
         else:
             new_user = User(form.username.data, form.email.data, form.password.data,form.role.data)
             db.session.add(new_user)
@@ -34,33 +34,24 @@ def add():
             return redirect(url_for('admin.index'))
     elif request.method == 'GET':
         return render_template('admin/add.html', form=form)
-# def add():
-#     form = SigupForm()
-#     if request.method=='POST':
-#         new_user = User(form.username.data, form.email.data, form.password.data, form.role.data)
-#         db.session.add(new_user)
-#         db.session.commit()
-#         return  redirect(url_for('admin.index'))
-#     return render_template('admin/add.html', form=form)
-@model_admin.route('/delete/<int:id>')
-def delete(id):
-    if(id):
-        User.query.filter_by(id=id).delete()
-        db.session.commit()
-    return redirect(url_for('admin.index'))
-# @model_admin.route('/edit/<int:id>',methods=['POST'])
-# def edit(id):
-#     form=SigupForm()
-#     if request.method=='POST':
-#         user=User.query.filter_by(id=id).first()
-#         db.session.commit()
-#         return  redirect(url_for('admin.index'))
-#     elif request.method=='GET':
-#         return render_template('admin/edit.html',form=form)
-#     return render_template('admin/edit.html',info=User.query.filter_by(id=id).first())
-@model_admin.route('/edit')
-def edit():
-    return render_template('admin/edit.html')
+@model_admin.route('/delete',methods=['POST'])
+def delete():
+     id=request.form['ids']
+     User.query.filter_by(id=id).delete()
+     db.session.commit()
+     return redirect(url_for('admin.index'))
+@model_admin.route('/edit/<int:id>',methods=['GET','POST'])
+def edit(id):
+    # admin = User.query.filter_by(username == 'admin').update(dict(email='my_new_email@example.com')))
+    # db.session.commit()
+    admin = User.query.filter_by(id=id).first()
+    username=request.form['username']
+    email=request.form['email']
+    password=request.form['password']
+    role=request.form['role']
+    admin.email = 'my_new_email@example.com'
+    db.session.commit()
+    return render_template('admin/edit.html',info=User.query.filter_by(id=id).first())
 @model_admin.route('/login/',methods=['GET','POST'])
 def login():
         form = LoginForm()
